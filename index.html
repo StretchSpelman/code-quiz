@@ -7,23 +7,30 @@
     <link rel="stylesheet" href="assets/css/stylesheet.css">
 </head>
 <body>
-    <header>
-        <h1 class="larg-font">Coding Quiz</h1>
-        <p>Try to answer teh following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</p>
-        <button id="start-button">Start</button>
+    <div id="quiz-header" class="hide">
+    <header class='main-header'>
+        <h1 class="large-font">Coding Quiz</h1>
+        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</p>
+        <button id="start-button">Start Quiz</button>
     </header>
+    </div>
     <main>
+
+    <section>
         <div id="quiz-container">
             <div id="question-container">
                 <p id="question-text"></p>
             </div>
-            <div id="answer-buttons">
-            </div>
+            <button id="answer-buttons">
+            </button>
         </div>
+    </section>
 
+    <section>
         <div id="view-highscores">
             <p>View Highscores</p>
         </div>
+    </section>
 
         <div id="score-container">
             <p>Score: <span id="score">0</span></p>
@@ -35,6 +42,7 @@
         
         <div id="highscore-container" style="display: none;">
             <p>High Score: <span id="highscore">0</span></p>
+            <p>Initials: <span id="initials"></span></p>
         </div>
         
     </main>

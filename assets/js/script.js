@@ -1,10 +1,14 @@
 const startButton = document.getElementById("start-button");
+const quizHeader = document.getElementById("quiz-header");
+const quizContent = document.getElementById("quiz-content");
 const questionContainer = document.getElementById("question-text");
 const answerButtons = document.getElementById("answer-buttons");
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
 var score = 0;
 var timer;
+var count= 75;
+var currentQuestionIndex = 0;
 
 
 var quizQuestions = [
@@ -43,23 +47,36 @@ startButton.addEventListener('click', startQuiz);
 
 function startQuiz() {
     startButton.classList.add("hide");
+    quizHeader.classList.add('hide');
+
     currentQuestionIndex = 0;
     score = 0;
     setNextQuestion();
-    startTimer(60);
+    startTimer();
 }
 
-function startTimer(duration) {
-    let timeLeft=duration;
-    timerDisplay.textContent=timeLeft;
+function startTimer() {
     timer = setInterval(function() {
       timeLeft--;
-      timerDisplay.textContent = timeLeft;
+      timerDisplay.textContent=timeLeft;
       if (timeLeft <= 0 || currentQuestionIndex >= quizQuestions.length) {
         endQuiz();
       }
     }, 1000);
   }
+
+  function selectAnswer(selectedAnswer, correctAnswer) {
+    if (selectedAnswer === correctAnswer) {
+        score++;
+        scoreDisplay.textContent = score;
+    } else {
+        startTimer(parseInt(timerDisplay.textContent) - 10);
+    }
+
+    currentQuestionIndex++;
+    setNextQuestion();
+}
+
 
   function setNextQuestion() {
 
@@ -81,29 +98,19 @@ function startTimer(duration) {
 }
 
 
-function selectAnswer(selectedAnswer, correctAnswer) {
-    if (selectedAnswer === correctAnswer) {
-        score++;
-        scoreDisplay.textContent = score;
-    } else {
-        startTimer(parseInt(timerDisplay.textContent) - 10);
-    }
 
-    currentQuestionIndex++;
-    setNextQuestion();
-}
-
-function showHighScore() {
-    highscoreContainer.style.display = "block";
-}
 
 function endQuiz() {
     clearInterval(timer);
     questionContainer.innerText = "Quiz Over!";
     answerButtons.innerHTML = "";
     scoreDisplay.textContent = score;
-    updateHighScore();
-    showHighScore();
-    var initials = prompt('Enter your initials:');
+    
+    var initials = prompt("Enter your initials:");
+    if (!initials) {
+        return;
+    }
 }
+
+
 
