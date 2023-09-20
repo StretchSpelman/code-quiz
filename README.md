@@ -10,9 +10,9 @@
 N/A
 
 ## Usage
-Webpage: https://stretchspelman.github.io/Portfolio-challenge/
+Webpage: https://stretchspelman.github.io/code-quiz/ 
 
-![alt text] (assets\images\portfolio-challenge-screenshot.png)
+![Alttext](/assets/img/code-quiz-screenshot.png)
 
 ## Credits
 N/A
